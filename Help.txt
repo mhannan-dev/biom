@@ -1,0 +1,17 @@
+php artisan module:make Product
+
+php artisan module:use Product
+
+php artisan module:make-migration create_blogs_table Blog
+
+php artisan module:migrate Product
+
+php artisan module:seed Product
+php artisan module:migrate-fresh Product
+
+php artisan module:make-model Post Blog
+
+
+
+php artisan module:migrate-refresh
+
