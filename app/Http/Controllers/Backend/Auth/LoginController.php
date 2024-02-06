@@ -10,19 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
     use AuthenticatesUsers;
-
     /**
      * Where to redirect users after login.
      *
@@ -58,7 +46,7 @@ class LoginController extends Controller
         // Attempt to login
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
             // Redirect to dashboard
-            session()->flash('success', 'Successully Logged in !');
+            session()->flash('success', 'Successfully Logged in !');
             return redirect()->route('admin.dashboard');
         } else {
             // Search using username

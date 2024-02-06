@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Custom styles for color scheme */
+:root {
+    --primary-color: #2a9d8f;
+    /* Teal */
+    --secondary-color: #e9c46a;
+    /* Yellow */
+    --accent-color: #264653;
+    /* Dark teal */
+    --background-color: #f4a261;
+    /* Light orange */
+    --text-color: #fff;
+    /* White */
+}
+
+/* Override Bootstrap styles with custom colors */
+.navbar-dark .navbar-nav .nav-link {
+    color: var(--text-color);
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.6)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.bg-secondary {
+    background-color: var(--secondary-color) !important;
+}
+
+.text-secondary {
+    color: var(--secondary-color) !important;
+}
+
+.bg-accent {
+    background-color: var(--accent-color) !important;
+}
+
+.text-accent {
+    color: var(--accent-color) !important;
+}
+
+body {
+    
+    color: var(--text-color);
+}
