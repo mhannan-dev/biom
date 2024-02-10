@@ -28,6 +28,7 @@ a {
 .sticky-nav {
     background-color: #fff;
     transition: background-color 0.3s ease;
+    
 }
 
 .navbar-dark .navbar-nav .nav-link,
