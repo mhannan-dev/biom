@@ -1,361 +1,487 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>BIOM</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <!-- Navigation Bar -->
+        <nav
+            class="navbar navbar-expand-lg navbar-dark fw-bold sticky-top"
+            id="mainNavbar"
+        >
+            <div class="container">
+                <a class="navbar-brand" href="index.html">BIOM</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">মুল পাতা </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="courses.html">কোর্স</a>
+                        </li>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BIOM</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        :root {
-            --primary-color: #06186a;
-            --secondary-color: #6a4206;
-            --text-color: #fff;
-            --text-hover-color: #2a9d8f;
-            --header-bg-color: #083088;
-            --header-text-color: #fff;
-        }
-
-        .navbar-dark .navbar-nav .nav-link {
-            color: var(--text-color);
-        }
-
-        .navbar-dark .navbar-nav .nav-link:hover {
-            color: var(--text-hover-color);
-        }
-
-        .navbar-dark .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.6)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        }
-
-        .bg-primary {
-            background-color: var(--primary-color) !important;
-        }
-
-        .text-primary {
-            color: var(--primary-color) !important;
-        }
-
-        .bg-secondary {
-            background-color: var(--secondary-color) !important;
-        }
-
-        .text-secondary {
-            color: var(--secondary-color) !important;
-        }
-
-        header {
-            background-color: var(--header-bg-color);
-            color: var(--header-text-color);
-            padding: 20px;
-            text-align: left;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        .banner-button {
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-
-        .input-box {
-            position: relative;
-            height: 76px;
-            max-width: 900px;
-            width: 100%;
-            background: #fff;
-            margin: 0 20px;
-            border-radius: 8px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .input-box i,
-        .input-box .button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .input-box i {
-            left: 20px;
-            font-size: 30px;
-            color: #707070;
-        }
-
-        .input-box input {
-            height: 100%;
-            width: 100%;
-            outline: none;
-            font-size: 18px;
-            font-weight: 400;
-            border: none;
-            padding: 0 155px 0 65px;
-            background-color: transparent;
-        }
-
-        .input-box .button {
-            right: 20px;
-            font-size: 16px;
-            font-weight: 400;
-            color: #fff;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 6px;
-            background-color: var(--primary-color);
-            cursor: pointer;
-        }
-
-        .input-box .button.clicked {
-            transform: translateY(-50%) scale(0.98);
-        }
-
-        .section-title {
-            border-bottom: 1px solid #ccc;
-            width: 20%;
-            margin: 30px auto;
-        }
-
-        .card {
-            padding: 5px;
-        }
-
-        .card-title {
-            font-size: 1.5rem;
-        }
-
-        .card-title a {
-            color: var(--primary-color);
-        }
-
-        .bookmark {
-            position: relative;
-        }
-
-        .bookmark-background {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
-            background-color: var(--header-bg-color);
-            border-radius: 50%;
-            z-index: 0;
-        }
-
-        .bookmark-background-hover {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary-color);
-            border-radius: 50%;
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .bookmark:hover .bookmark-background-hover {
-            opacity: 1;
-        }
-
-        .bookmark svg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            fill: white;
-            z-index: 1;
-        }
-
-        .enroll-btn {
-            border-radius: 5px;
-            font-size: 16px;
-            letter-spacing: 1px;
-            padding: 10px 15px;
-            transition: background-color 0.5s ease;
-            border: 1px solid var(--header-bg-color);
-        }
-
-        .enroll-btn:hover {
-            background-color: var(--header-bg-color);
-        }
-    </style>
-</head>
-
-<body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="#">BIOM</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">মুল পাতা </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ফ্রী কোর্স</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">পেইড কোর্স</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ব্লগ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">পরিচিতি</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">সাদকাহ</a>
-                    </li>
-                </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="blog.html">ব্লগ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">যোগাযোগ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link registration-btn" href=""
+                                >নিবন্ধন করুন</a
+                            >
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <h1>Welcome to BIOM</h1>
-            <p class="lead">
-                ইসলামী জ্ঞান অর্জনের অনলাইনভিত্তিক অনন্য একটি শিক্ষা
-                প্রতিষ্ঠান। এতে আরবীভাষা ও সাহিত্যসহ কুরআন-হাদীস-ফিকহ-আকীদা
-                ইত্যাদি শরীয়তের বিভিন্ন বিষয়ে রয়েছে পেইড ও ফ্রি কোর্সসমূহ
-            </p>
-            <button class="btn btn-light banner-button">Read more</button>
-        </div>
-    </header>
-    <section class="search d-flex justify-content-center py-4">
-        <form action="" method="get" class="input-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" name="search" placeholder="Search here..." />
-            <button type="submit" class="button">Search</button>
-        </form>
-    </section>
-    <section class="popular-course d-flex justify-content-center py-4">
-        <div class="container text-center">
-            <h2 class="section-title py-4">Popular courses</h2>
-            <div class="row">
-                <div class="col-md-4 py-2">
-                    <div class="card">
-                        <div class="bookmark">
-                            <div class="bookmark-background"></div>
-                            <div class="bookmark-background-hover"></div>
-                            <a href="#">
-                                <svg title="Bookmark course" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0"
-                                    stroke-linecap="round" stroke-linejoin="round" class="bookmark-icon">
-                                    <path d="M4 5v16l8-8 8 8V5H4z"></path>
-                                </svg>
-                            </a>
-                        </div>
-                        <img src="images/1.png" width="100%" class="card-img-top" alt="Placeholder Image" />
-                        <div class="card-body">
-                            <h2 class="card-title">
-                                <a href="#">কুরআন ও সালাত অনুধাবন কোর্স</a>
-                            </h2>
-                            <a href="#" class="btn btn-outline-dark enroll-btn my-4">Enroll
-                                Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 py-2">
-                    <div class="card">
-                        <div class="bookmark">
-                            <div class="bookmark-background"></div>
-                            <div class="bookmark-background-hover"></div> <!-- New hover background element -->
-                            <a href="#">
-                                <svg title="Bookmark course" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0"
-                                    stroke-linecap="round" stroke-linejoin="round" class="bookmark-icon">
-                                    <path d="M4 5v16l8-8 8 8V5H4z"></path>
-                                </svg>
-                            </a>
-                        </div>
-                        <img src="images/1.png" width="100%" class="card-img-top" alt="Placeholder Image" />
-                        <div class="card-body">
-                            <h2 class="card-title">
-                                <a href="#">কুরআন ও সালাত অনুধাবন কোর্স</a>
-                            </h2>
-                            <a href="#" class="btn btn-outline-dark enroll-btn my-4">Enroll
-                                Now</a>
+        </nav>
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <h1>Welcome to BIOM</h1>
+                <p class="lead">
+                    ইসলামী জ্ঞান অর্জনের অনলাইনভিত্তিক অনন্য একটি শিক্ষা
+                    প্রতিষ্ঠান। এতে আরবীভাষা ও সাহিত্যসহ কুরআন-হাদীস-ফিকহ-আকীদা
+                    ইত্যাদি শরীয়তের বিভিন্ন বিষয়ে রয়েছে পেইড ও ফ্রি কোর্সসমূহ
+                </p>
+                <button class="btn btn-light banner-button">Read more</button>
+            </div>
+        </header>
+        <section class="search d-flex justify-content-center py-2">
+            <form action="" method="get" class="input-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" name="search" placeholder="Search here..." />
+                <button type="submit" class="button">Search</button>
+            </form>
+        </section>
+        <section class="popular-course d-flex justify-content-center py-4">
+            <div class="container text-center">
+                <h2 class="section-title py-4">Popular courses</h2>
+                <div class="row">
+                    <div class="col-md-4 py-2">
+                        <div class="card">
+                            <div class="bookmark">
+                                <div class="bookmark-background"></div>
+                                <div class="bookmark-background-hover"></div>
+                                <a href="#">
+                                    <svg
+                                        title="Bookmark course"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="30"
+                                        height="30"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="0"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="bookmark-icon"
+                                    >
+                                        <path d="M4 5v16l8-8 8 8V5H4z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <img
+                                src="images/1.png"
+                                width="100%"
+                                class="card-img-top"
+                                alt="Placeholder Image"
+                            />
+                            <div class="card-body">
+                                <h2 class="card-title">
+                                    <a href="#">কুরআন ও সালাত অনুধাবন কোর্স</a>
+                                </h2>
+                                <a
+                                    href="#"
+                                    class="btn btn-outline-dark enroll-btn my-4"
+                                    >Enroll Now</a
+                                >
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 py-2">
-                    <div class="card">
-                        <div class="bookmark">
-                            <div class="bookmark-background"></div>
-                            <div class="bookmark-background-hover"></div> <!-- New hover background element -->
-                            <a href="#">
-                                <svg title="Bookmark course" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0"
-                                    stroke-linecap="round" stroke-linejoin="round" class="bookmark-icon">
-                                    <path d="M4 5v16l8-8 8 8V5H4z"></path>
-                                </svg>
-                            </a>
+                    <div class="col-md-4 py-2">
+                        <div class="card">
+                            <div class="bookmark">
+                                <div class="bookmark-background"></div>
+                                <div class="bookmark-background-hover"></div>
+                                <!-- New hover background element -->
+                                <a href="#">
+                                    <svg
+                                        title="Bookmark course"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="30"
+                                        height="30"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="0"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="bookmark-icon"
+                                    >
+                                        <path d="M4 5v16l8-8 8 8V5H4z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <img
+                                src="images/1.png"
+                                width="100%"
+                                class="card-img-top"
+                                alt="Placeholder Image"
+                            />
+                            <div class="card-body">
+                                <h2 class="card-title">
+                                    <a href="#">কুরআন ও সালাত অনুধাবন কোর্স</a>
+                                </h2>
+                                <a
+                                    href="#"
+                                    class="btn btn-outline-dark enroll-btn my-4"
+                                    >Enroll Now</a
+                                >
+                            </div>
                         </div>
-                        <img src="images/1.png" width="100%" class="card-img-top" alt="Placeholder Image" />
-                        <div class="card-body">
-                            <h2 class="card-title">
-                                <a href="#">কুরআন ও সালাত অনুধাবন কোর্স</a>
-                            </h2>
-                            <a href="#" class="btn btn-outline-dark enroll-btn my-4">Enroll
-                                Now</a>
+                    </div>
+                    <div class="col-md-4 py-2">
+                        <div class="card">
+                            <div class="bookmark">
+                                <div class="bookmark-background"></div>
+                                <div class="bookmark-background-hover"></div>
+                                <!-- New hover background element -->
+                                <a href="#">
+                                    <svg
+                                        title="Bookmark course"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="30"
+                                        height="30"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="0"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="bookmark-icon"
+                                    >
+                                        <path d="M4 5v16l8-8 8 8V5H4z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <img
+                                src="images/1.png"
+                                width="100%"
+                                class="card-img-top"
+                                alt="Placeholder Image"
+                            />
+                            <div class="card-body">
+                                <h2 class="card-title">
+                                    <a href="#">কুরআন ও সালাত অনুধাবন কোর্স</a>
+                                </h2>
+                                <a
+                                    href="#"
+                                    class="btn btn-outline-dark enroll-btn my-4"
+                                    >Enroll Now</a
+                                >
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- Main Content Area -->
-    <main class="py-5">
-        <div class="container">
-            <h2>About Quran Academy</h2>
-            <p>
-                Quran Academy is dedicated to providing quality Quranic
-                education...
-            </p>
-        </div>
-    </main>
-    <!-- Footer -->
-    <footer class="bg-primary text-white py-4">
-        <div class="container">
-            <p>&copy; 2024 Quran Academy</p>
-        </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+        </section>
+        <section class="popular-course d-flex justify-content-center py-4">
+            <div class="container">
+                <h2 class="section-title py-4 text-center">Blogs</h2>
+                <div class="row">
+                    <div class="col-md-4 py-2">
+                        <div class="card">
+                            <img
+                                src="images/1.png"
+                                width="100%"
+                                class="card-img-top"
+                                alt="Placeholder Image"
+                            />
+                            <div class="card-body">
+                                <div
+                                    class="d-flex justify-content-between align-items-center py-2"
+                                >
+                                    <span class="date">Date: 10-02-2023</span>
+                                    <a href="" class="category">Category</a>
+                                </div>
+                                <h2 class="card-title py-3 fw-bold">
+                                    <a href="#">কুরআন ও সালাত অনুধাবন কোর্স</a>
+                                </h2>
+                                <p class="py-2 blog-list-text">
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Odio, similique. Soluta
+                                    doloremque illum magnam voluptate, obcaecati
+                                    facere reiciendis, consequatur, aut odio
+                                    tenetur blanditiis! Doloribus deleniti
+                                    voluptatibus reiciendis dolores atque dicta.
+                                </p>
+                                <a href="#" class="my-4 read-more">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 py-2">
+                        <div class="card">
+                            <img
+                                src="images/1.png"
+                                width="100%"
+                                class="card-img-top"
+                                alt="Placeholder Image"
+                            />
+                            <div class="card-body">
+                                <div
+                                    class="d-flex justify-content-between align-items-center py-2"
+                                >
+                                    <span class="date">Date: 10-02-2023</span>
+                                    <a href="" class="category">Category</a>
+                                </div>
+                                <h2 class="card-title py-3 fw-bold">
+                                    <a href="#">কুরআন ও সালাত অনুধাবন কোর্স</a>
+                                </h2>
+                                <p class="py-2 blog-list-text">
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Odio, similique. Soluta
+                                    doloremque illum magnam voluptate, obcaecati
+                                    facere reiciendis, consequatur, aut odio
+                                    tenetur blanditiis! Doloribus deleniti
+                                    voluptatibus reiciendis dolores atque dicta.
+                                </p>
+                                <a href="#" class="my-4 read-more">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 py-2">
+                        <div class="card">
+                            <img
+                                src="images/1.png"
+                                width="100%"
+                                class="card-img-top"
+                                alt="Placeholder Image"
+                            />
+                            <div class="card-body">
+                                <div
+                                    class="d-flex justify-content-between align-items-center py-2"
+                                >
+                                    <span class="date">Date: 10-02-2023</span>
+                                    <a href="" class="category">Category</a>
+                                </div>
+                                <h2 class="card-title py-3 fw-bold">
+                                    <a href="#">কুরআন ও সালাত অনুধাবন কোর্স</a>
+                                </h2>
+                                <p class="py-2 blog-list-text">
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Odio, similique. Soluta
+                                    doloremque illum magnam voluptate, obcaecati
+                                    facere reiciendis, consequatur, aut odio
+                                    tenetur blanditiis! Doloribus deleniti
+                                    voluptatibus reiciendis dolores atque dicta.
+                                </p>
+                                <a href="#" class="my-4 read-more">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 py-2">
+                        <div class="card">
+                            <img
+                                src="images/1.png"
+                                width="100%"
+                                class="card-img-top"
+                                alt="Placeholder Image"
+                            />
+                            <div class="card-body">
+                                <div
+                                    class="d-flex justify-content-between align-items-center py-2"
+                                >
+                                    <span class="date">Date: 10-02-2023</span>
+                                    <a href="" class="category">Category</a>
+                                </div>
+                                <h2 class="card-title py-3 fw-bold">
+                                    <a href="#">কুরআন ও সালাত অনুধাবন কোর্স</a>
+                                </h2>
+                                <p class="py-2 blog-list-text">
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Odio, similique. Soluta
+                                    doloremque illum magnam voluptate, obcaecati
+                                    facere reiciendis, consequatur, aut odio
+                                    tenetur blanditiis! Doloribus deleniti
+                                    voluptatibus reiciendis dolores atque dicta.
+                                </p>
+                                <a href="#" class="my-4 read-more">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 py-2">
+                        <div class="card">
+                            <img
+                                src="images/1.png"
+                                width="100%"
+                                class="card-img-top"
+                                alt="Placeholder Image"
+                            />
+                            <div class="card-body">
+                                <div
+                                    class="d-flex justify-content-between align-items-center py-2"
+                                >
+                                    <span class="date">Date: 10-02-2023</span>
+                                    <a href="" class="category">Category</a>
+                                </div>
+                                <h2 class="card-title py-3 fw-bold">
+                                    <a href="#">কুরআন ও সালাত অনুধাবন কোর্স</a>
+                                </h2>
+                                <p class="py-2 blog-list-text">
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Odio, similique. Soluta
+                                    doloremque illum magnam voluptate, obcaecati
+                                    facere reiciendis, consequatur, aut odio
+                                    tenetur blanditiis! Doloribus deleniti
+                                    voluptatibus reiciendis dolores atque dicta.
+                                </p>
+                                <a href="#" class="my-4 read-more">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 py-2">
+                        <div class="card">
+                            <img
+                                src="images/1.png"
+                                width="100%"
+                                class="card-img-top"
+                                alt="Placeholder Image"
+                            />
+                            <div class="card-body">
+                                <div
+                                    class="d-flex justify-content-between align-items-center py-2"
+                                >
+                                    <span class="date">Date: 10-02-2023</span>
+                                    <a href="" class="category">Category</a>
+                                </div>
+                                <h2 class="card-title py-3 fw-bold">
+                                    <a href="#">কুরআন ও সালাত অনুধাবন কোর্স</a>
+                                </h2>
+                                <p class="py-2 blog-list-text">
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Odio, similique. Soluta
+                                    doloremque illum magnam voluptate, obcaecati
+                                    facere reiciendis, consequatur, aut odio
+                                    tenetur blanditiis! Doloribus deleniti
+                                    voluptatibus reiciendis dolores atque dicta.
+                                </p>
+                                <a href="#" class="my-4 read-more">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <ul
+                        class="pagination pagination-md justify-content-end mt-4"
+                    >
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous"
+                                >&laquo;</a
+                            >
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next"
+                                >&raquo;</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="counter-up d-flex justify-content-center py-4">
+            <div class="container text-center py-4">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="counter-content">
+                            <h2 class="mb-3">
+                                <span class="counter">5,000</span>
+                            </h2>
+                            <h3 class="mb-3">Students</h3>
+                            <i class="fa fa-users mb-3"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="counter-content">
+                            <h2 class="mb-3">
+                                <span class="counter">900</span>
+                            </h2>
+                            <h3 class="mb-3">Teacher</h3>
+                            <i class="fa fa-users mb-3"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="counter-content">
+                            <h2 class="mb-3">
+                                <span class="counter">50</span>
+                            </h2>
+                            <h3 class="mb-3">Course</h3>
+                            <i class="fa fa-users mb-3"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer class="bg-primary text-white py-4">
+            <div class="container">
+                <p>&copy; 2024 Quran Academy</p>
+            </div>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery.counterup@2.1.0/jquery.counterup.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
 
+        <script>
+            $(document).ready(function () {
+                $(".counter").counterUp({
+                    delay: 10,
+                    time: 2000,
+                });
+
+                $(window).scroll(function () {
+                    var scroll = $(window).scrollTop();
+                    var navbar = $("#mainNavbar");
+                    if (scroll >= 100) {
+                        navbar.addClass("sticky-nav");
+                    } else {
+                        navbar.removeClass("sticky-nav");
+                    }
+                });
+            });
+        </script>
+    </body>
 </html>
