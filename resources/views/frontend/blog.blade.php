@@ -1,73 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>BIOM</title>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        />
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="css/style.css" />
-    </head>
-    <body>
-        <nav
-            class="navbar navbar-expand-lg navbar-dark fw-bold sticky-top shadow-sm"
-            id="mainNavbar"
-        >
-            <div class="container">
-                <a class="navbar-brand" href="index.html">BIOM</a>
-                <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">মুল পাতা </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="courses.html">কোর্স</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="blog.html">ব্লগ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">যোগাযোগ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link registration-btn" href="registration.html"
-                                >নিবন্ধন করুন</a
-                            >
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <h1>Welcome to BIOM</h1>
-            <p class="lead">
-                ইসলামী জ্ঞান অর্জনের অনলাইনভিত্তিক অনন্য একটি শিক্ষা
-                প্রতিষ্ঠান। এতে আরবীভাষা ও সাহিত্যসহ কুরআন-হাদীস-ফিকহ-আকীদা
-                ইত্যাদি শরীয়তের বিভিন্ন বিষয়ে রয়েছে পেইড ও ফ্রি কোর্সসমূহ
-            </p>
-            <button class="btn btn-light banner-button">Read more</button>
-        </div>
-    </header>
+@extends('frontend._layout')
+@section('content')
     <section class="search d-flex justify-content-center py-2">
         <form action="" method="get" class="input-box">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -81,7 +13,7 @@
             <div class="row">
                 <div class="col-md-4 py-2">
                     <div class="card">
-                        <img src="images/1.png" width="100%" class="card-img-top" alt="Placeholder Image" />
+                        <img src="frontend/images/1.png" width="100%" class="card-img-top" alt="Placeholder Image" />
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center py-2">
                                 <span class="date">Date: 10-02-2023</span>
@@ -99,7 +31,7 @@
                 </div>
                 <div class="col-md-4 py-2">
                     <div class="card">
-                        <img src="images/1.png" width="100%" class="card-img-top" alt="Placeholder Image" />
+                        <img src="frontend/images/1.png" width="100%" class="card-img-top" alt="Placeholder Image" />
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center py-2">
                                 <span class="date">Date: 10-02-2023</span>
@@ -117,7 +49,7 @@
                 </div>
                 <div class="col-md-4 py-2">
                     <div class="card">
-                        <img src="images/1.png" width="100%" class="card-img-top" alt="Placeholder Image" />
+                        <img src="frontend/images/1.png" width="100%" class="card-img-top" alt="Placeholder Image" />
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center py-2">
                                 <span class="date">Date: 10-02-2023</span>
@@ -135,7 +67,7 @@
                 </div>
                 <div class="col-md-4 py-2">
                     <div class="card">
-                        <img src="images/1.png" width="100%" class="card-img-top" alt="Placeholder Image" />
+                        <img src="frontend/images/1.png" width="100%" class="card-img-top" alt="Placeholder Image" />
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center py-2">
                                 <span class="date">Date: 10-02-2023</span>
@@ -153,7 +85,7 @@
                 </div>
                 <div class="col-md-4 py-2">
                     <div class="card">
-                        <img src="images/1.png" width="100%" class="card-img-top" alt="Placeholder Image" />
+                        <img src="frontend/images/1.png" width="100%" class="card-img-top" alt="Placeholder Image" />
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center py-2">
                                 <span class="date">Date: 10-02-2023</span>
@@ -171,7 +103,7 @@
                 </div>
                 <div class="col-md-4 py-2">
                     <div class="card">
-                        <img src="images/1.png" width="100%" class="card-img-top" alt="Placeholder Image" />
+                        <img src="frontend/images/1.png" width="100%" class="card-img-top" alt="Placeholder Image" />
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center py-2">
                                 <span class="date">Date: 10-02-2023</span>
@@ -199,28 +131,4 @@
             </div>
         </div>
     </section>
-    <!-- Footer -->
-    <footer class="bg-primary text-white py-4">
-        <div class="container">
-            <p>&copy; 2024 Quran Academy</p>
-        </div>
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(window).scroll(function () {
-                var scroll = $(window).scrollTop();
-
-                if (scroll >= 100) {
-                    $("#mainNavbar").addClass("bg-dark");
-                } else {
-                    $("#mainNavbar").removeClass("bg-dark");
-                }
-            });
-
-        });
-    </script>
-</body>
-
-</html>
+    @endsection

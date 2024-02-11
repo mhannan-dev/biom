@@ -1,22 +1,27 @@
+:root {
+    --primary-color: #06186a;
+    --secondary-color: #6a4206;
+    --white-color: #fff;
+    --header-bg-color: #083088;
+}
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: Arial, sans-serif;
+
+}
+
+html {
+    font-family: Arial, sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    height: 100vh;
 }
 
 a {
 	text-decoration: none;
 }
 
-:root {
-	--primary-color: #06186a;
-	--secondary-color: #6a4206;
-	--text-color: #fff;
-	--text-hover-color: #2a9d8f;
-	--header-bg-color: #083088;
-	--header-text-color: #fff;
-}
 
 .navbar {
 	z-index: 1000;
@@ -28,7 +33,7 @@ a {
 .sticky-nav {
     background-color: #fff;
     transition: background-color 0.3s ease;
-    
+
 }
 
 .navbar-dark .navbar-nav .nav-link,
@@ -70,7 +75,7 @@ a {
 
 header {
 	background-color: var(--header-bg-color);
-	color: var(--header-text-color);
+	color: var(--white-color);
 	padding: 50px;
 	text-align: left;
 }
@@ -87,7 +92,7 @@ header p {
 
 .banner-button {
 	background-color: var(--primary-color);
-	color: var(--text-color);
+	color: var(--white-color);
 	padding: 10px 20px;
 	border: none;
 	border-radius: 5px;
@@ -234,7 +239,7 @@ i {
 
 .counter-up {
 	background-color: var(--header-bg-color);
-	color: var(--header-text-color);
+	color: var(--white-color);
 	padding: 100px 50px;
 	min-height: 400px;
 	display: flex;
