@@ -60,7 +60,7 @@
                                         @forelse ($roles as $key => $role)
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ $role->name }}</td>
+                                                <td>{{ lowercase($role->name) }}</td>
                                                 <td>
                                                     @php $count = 0; @endphp
 

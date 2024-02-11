@@ -19,8 +19,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('backend.pages.users.index', compact('users'));
+        $data['users'] = User::all();
+        $data['title'] = "Users";
+        return view('backend.pages.users.index', $data);
     }
 
     /**
@@ -30,8 +31,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $roles  = Role::all();
-        return view('backend.pages.users.create', compact('roles'));
+        $data['roles']  = Role::all();
+        $data['title'] = "Create";
+        return view('backend.pages.users.create', $data);
     }
 
     /**
@@ -55,11 +57,9 @@ class UsersController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
-
-        if ($request->roles) {
-            $user->assignRole($request->roles);
+        if (@$request->roles) {
+            $user->assignRole(@$request->roles);
         }
-
         session()->flash('success', 'User has been created !!');
         return redirect()->route('admin.users.index');
     }
@@ -83,9 +83,10 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        $roles  = Role::all();
-        return view('backend.pages.users.edit', compact('user', 'roles'));
+        $data['user'] = User::find($id);
+        $data['roles']  = Role::all();
+        $data['title'] = "Edit";
+        return view('backend.pages.users.edit', $data);
     }
 
     /**
@@ -99,14 +100,12 @@ class UsersController extends Controller
     {
         // Create New User
         $user = User::find($id);
-
         // Validation Data
         $request->validate([
             'name' => 'required|max:50',
             'email' => 'required|max:100|email|unique:users,email,' . $id,
             'password' => 'nullable|min:6|confirmed',
         ]);
-
 
         $user->name = $request->name;
         $user->email = $request->email;
@@ -136,7 +135,6 @@ class UsersController extends Controller
         if (!is_null($user)) {
             $user->delete();
         }
-
         session()->flash('success', 'User has been deleted !!');
         return back();
     }

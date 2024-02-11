@@ -15,7 +15,6 @@ Role Page - Admin Panel
 
 
 @section('content')
-
 <!-- page title area start -->
 <div class="page-title-area">
     <div class="row align-items-center">
