@@ -5,13 +5,6 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-/**
- * Class RolePermissionSeeder.
- *
- * @see https://spatie.be/docs/laravel-permission/v5/basic-usage/multiple-guards
- *
- * @package App\Database\Seeds
- */
 class RolePermissionSeeder extends Seeder
 {
     /**
@@ -86,7 +79,7 @@ class RolePermissionSeeder extends Seeder
         ];
 
         // Do same for the admin guard
-        $rolesadmin = Role::create(['name' => 'admin', 'guard_name' => 'admin']);
+        $rolesAdmin = Role::create(['name' => 'admin', 'guard_name' => 'admin']);
 
         // Create and Assign Permissions
         for ($i = 0; $i < count($permissions); $i++) {
@@ -95,15 +88,15 @@ class RolePermissionSeeder extends Seeder
                 // Create Permission
                 $permission = Permission::create(['name' => $permissions[$i]['permissions'][$j],
                 'group_name' => $permissionGroup, 'guard_name' => 'admin']);
-                $rolesadmin->givePermissionTo($permission);
-                $permission->assignRole($rolesadmin);
+                $rolesAdmin->givePermissionTo($permission);
+                $permission->assignRole($rolesAdmin);
             }
         }
 
         // Assign super admin role permission to admin user
         $admin = Admin::where('username', 'admin')->first();
         if ($admin) {
-            $admin->assignRole($rolesadmin);
+            $admin->assignRole($rolesAdmin);
         }
     }
 }

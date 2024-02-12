@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 
 class UsersController extends Controller
@@ -44,25 +45,34 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        // Validation Data
+
         $request->validate([
             'name' => 'required|max:50',
             'email' => 'required|max:100|email|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
-
-        // Create New User
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->save();
-        if (@$request->roles) {
-            $user->assignRole(@$request->roles);
+        DB::beginTransaction();
+        try {
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->save();
+            if ($request->roles) {
+                foreach ($request->roles as $role) {
+                    // $user->assignRole($role, 'admin');
+                    $user->assignRole('writer');
+                }
+            }
+            DB::commit();
+            session()->flash('success', 'User has been created !!');
+        } catch (Exception $e) {
+            DB::rollBack();
+            session()->flash('error', 'Failed to create user: ' . $e->getMessage());
         }
-        session()->flash('success', 'User has been created !!');
         return redirect()->route('admin.users.index');
     }
+
 
     /**
      * Display the specified resource.
