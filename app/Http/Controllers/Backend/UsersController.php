@@ -45,7 +45,6 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'name' => 'required|max:50',
             'email' => 'required|max:100|email|unique:users',
@@ -60,8 +59,7 @@ class UsersController extends Controller
             $user->save();
             if ($request->roles) {
                 foreach ($request->roles as $role) {
-                    // $user->assignRole($role, 'admin');
-                    $user->assignRole('writer');
+                    $user->assignRole($role);
                 }
             }
             DB::commit();

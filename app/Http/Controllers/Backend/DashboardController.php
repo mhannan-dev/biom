@@ -24,9 +24,9 @@ class DashboardController extends Controller
 
     public function index()
     {
-        if (is_null($this->user) || !$this->user->can('dashboard.view')) {
-            abort(403, 'Sorry !! You are Unauthorized to view dashboard !');
-        }
+        // if (is_null($this->user) || !$this->user->can('dashboard.view')) {
+        //     abort(403, 'Sorry !! You are Unauthorized to view dashboard !');
+        // }
 
         $total_roles = count(Role::select('id')->get());
         $total_admins = count(Admin::select('id')->get());

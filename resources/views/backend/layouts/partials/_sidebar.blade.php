@@ -59,22 +59,22 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview {{ Request::is('admin/roles*') ? 'd-block' : '' }}">
-                        @if ($user->can('role.view'))
+                        {{-- @if ($user->can('role.view')) --}}
                             <li class="nav-item">
                                 <a href="{{ route('admin.roles.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>All Roles</p>
                                 </a>
                             </li>
-                        @endif
-                        @if ($user->can('role.create'))
+                        {{-- @endif
+                        @if ($user->can('role.create')) --}}
                             <li class="nav-item">
                                 <a href="{{ route('admin.roles.create') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Create role</p>
                                 </a>
                             </li>
-                        @endif
+                        {{-- @endif --}}
                     </ul>
                 </li>
 

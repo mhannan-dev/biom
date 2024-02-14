@@ -73,7 +73,7 @@ class RolesController extends Controller
         $request->validate([
             'name' => 'required|max:100|unique:roles'
         ], [
-            'name.requried' => 'Please give a role name'
+            'name.required' => 'Please give a role name'
         ]);
 
         // Process Data
