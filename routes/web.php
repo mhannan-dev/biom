@@ -23,17 +23,8 @@ Route::group(['as' => 'frontend.'], function () {
 
 
 Auth::routes();
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::controller(LoginController::class)->group(function () {
-        Route::any('/', 'showLoginForm')->name('login');
-        Route::any('/submit', 'login')->name('login.submit');
-        Route::any('/logout', 'logout')->name('logout.submit');
-    });
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resources([
-        'roles' => RolesController::class,
-        'users' => UsersController::class,
-        'admins' => AdminsController::class,
-    ]);
 
+Route::controller(LoginController::class)->prefix('admin')->name('admin.')->middleware('auth_guard', 'guest')->group(function () {
+    Route::any('/', 'showLoginForm')->name('login');
+    Route::any('/submit', 'login')->name('login.submit');
 });

@@ -50,7 +50,7 @@
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" id="checkPermissionAll"
                                                 value="1"
-                                                {{ App\User::roleHasPermissions($role, $all_permissions) ? 'checked' : '' }}>
+                                                {{ App\Models\Admin::roleHasPermissions($role, $all_permissions) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="checkPermissionAll">All</label>
                                         </div>
                                         <hr>
@@ -58,7 +58,7 @@
                                         @foreach ($permission_groups as $group)
                                             <div class="row">
                                                 @php
-                                                    $permissions = App\User::getpermissionsByGroupName($group->name);
+                                                    $permissions = App\Models\Admin::getpermissionsByGroupName($group->name);
                                                     $j = 1;
                                                 @endphp
 
@@ -67,7 +67,7 @@
                                                         <input type="checkbox" class="form-check-input"
                                                             id="{{ $i }}Management" value="{{ $group->name }}"
                                                             onclick="checkPermissionByGroup('role-{{ $i }}-management-checkbox', this)"
-                                                            {{ App\User::roleHasPermissions($role, $permissions) ? 'checked' : '' }}>
+                                                            {{ App\Models\Admin::roleHasPermissions($role, $permissions) ? 'checked' : '' }}>
                                                         <label class="form-check-label"
                                                             for="checkPermission">{{ $group->name }}</label>
                                                     </div>
