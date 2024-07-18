@@ -28,36 +28,41 @@ class LoginController extends Controller
         return view('backend.auth.login');
     }
 
+     /**
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            'email'                => 'required|string',
+            'password'             => 'required|string',
+        ]);
+    }
 
     /**
-     * login admin
+     * The user has been authenticated.
      *
-     * @param Request $request
-     * @return void
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
      */
-    public function login(Request $request)
+    protected function authenticated(Request $request, $user)
     {
-        // Validate Login Data
-        $request->validate([
-            'email' => 'required|max:50',
-            'password' => 'required',
-        ]);
+        return redirect()->intended(route('admin.dashboard'));
+    }
 
-        // Attempt to login
-        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            // Redirect to dashboard
-            session()->flash('success', 'Successfully Logged in !');
-            return redirect()->route('admin.dashboard');
-        } else {
-            // Search using username
-            if (Auth::guard('admin')->attempt(['username' => $request->email, 'password' => $request->password], $request->remember)) {
-                session()->flash('success', 'Successully Logged in !');
-                return redirect()->route('admin.dashboard');
-            }
-            // error
-            session()->flash('error', 'Invalid email and password');
-            return back();
-        }
+     /**
+     * Get The Authenticated User Guard
+     * @return instance
+     */
+    protected function guard()
+    {
+        return Auth::guard('admin');
     }
 
     /**

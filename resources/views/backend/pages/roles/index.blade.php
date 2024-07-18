@@ -56,7 +56,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- @dd($collection); --}}
                                         @forelse ($roles as $key => $role)
                                             <tr>
                                                 <td>{{ ++$key }}</td>
@@ -77,7 +76,7 @@
                                                     @endforeach
                                                 </td>
                                                 <td>
-                                                    @if (Auth::guard('admin')->user()->can('admin.edit'))
+                                                    @if (Auth::guard('admin')->user()->can('role.edit'))
                                                         <a class="btn btn-danger btn-sm"
                                                             href="{{ route('admin.roles.destroy', $role->id) }}"
                                                             onclick="event.preventDefault(); document.getElementById('delete-form-{{ $role->id }}').submit();">
@@ -90,7 +89,7 @@
                                                             @csrf
                                                         </form>
                                                     @endif
-                                                    @if (Auth::guard('admin')->user()->can('admin.edit'))
+                                                    @if (Auth::guard('admin')->user()->can('role.edit'))
                                                         <a class="btn btn-warning btn-sm"
                                                             href="{{ route('admin.roles.edit', $role->id) }}">
                                                             <i class="fas fa-edit"></i>

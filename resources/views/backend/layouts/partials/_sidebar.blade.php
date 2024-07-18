@@ -1,5 +1,5 @@
 @php
-    $user = Auth::guard('admin')->user();
+    $admin = Auth::guard('admin')->user();
 @endphp
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -50,106 +50,67 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::is('admin/roles*') ? 'menu-is-opening menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ Request::is('admin/roles*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-edit"></i>
-                        <p>
-                            Roles & Permissions
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview {{ Request::is('admin/roles*') ? 'd-block' : '' }}">
-                        {{-- @if ($user->can('role.view')) --}}
-                            <li class="nav-item">
-                                <a href="{{ route('admin.roles.index') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>All Roles</p>
-                                </a>
-                            </li>
-                        {{-- @endif
-                        @if ($user->can('role.create')) --}}
-                            <li class="nav-item">
-                                <a href="{{ route('admin.roles.create') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Create role</p>
-                                </a>
-                            </li>
-                        {{-- @endif --}}
-                    </ul>
-                </li>
+                @if ($admin->can('role.view') || $admin->can('role.create'))
+                    <li class="nav-item {{ Request::is('admin/roles*') ? 'menu-is-opening menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ Request::is('admin/roles*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-edit"></i>
+                            <p>
+                                Roles & Permissions
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview {{ Request::is('admin/roles*') ? 'd-block' : '' }}">
+                            @if ($admin->can('role.view'))
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.roles.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>All Roles</p>
+                                    </a>
+                                </li>
+                            @endif
+                            @if ($admin->can('role.create'))
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.roles.create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Create role</p>
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
 
-                <li class="nav-item {{ Request::is('admin/users*') ? 'menu-is-opening menu-open' : '' }}">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
-                        <p>
-                            Users
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
 
-                        <li class="nav-item">
-                            <a href="{{ route('admin.users.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>All Users</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.users.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Create User</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                @if ($admin->can('admin.view') || $admin->can('admin.create'))
+                    <li class="nav-item {{ Request::is('admin/admins*') ? 'menu-is-opening menu-open' : '' }}">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-edit"></i>
+                            <p>
+                                Admins
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @if ($admin->can('admin.view'))
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.admins.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>All Admin</p>
+                                    </a>
+                                </li>
+                            @endif
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
-                        <p>
-                            Catalogue
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        @if ($user->can('category.view'))
-                            <li class="nav-item">
-                                <a href="{{ route('catalogue.category.index') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Category</p>
-                                </a>
-                            </li>
-                        @endif
-                        @if ($user->can('brand.view'))
-                            <li class="nav-item">
-                                <a href="{{ route('catalogue.brand.index') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Brand</p>
-                                </a>
-                            </li>
-                        @endif
-                    </ul>
-                </li>
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
-                        <p>
-                            Pages
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        @if ($user->can('page.view'))
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Pages</p>
-                                </a>
-                            </li>
-                        @endif
-                    </ul>
-                </li>
+                            @if ($admin->can('admin.create'))
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.admins.create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Create Admin</p>
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
 
                 <li class="nav-item">
                     <a href="{{ route('admin.logout.submit') }}"

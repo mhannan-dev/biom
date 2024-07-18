@@ -29,8 +29,6 @@
         </div>
     </div>
     <!-- error area end -->
-
-    @include('backend.layouts.partials.offsets')
     @include('backend.layouts.partials._scripts')
     @yield('scripts')
 </body>
